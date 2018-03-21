@@ -12,7 +12,7 @@ const client = new couchdb({
 		pass:'fIG1iCIlsI'
 	}
 })
-client._baseUrl = `http://zelard1215:fIG1iCIlsI@couchdb.cloudno.de:5984/dbtest`
+client._baseUrl = `http://zelard1215:fIG1iCIlsI@couchdb.cloudno.de:5984`
 console.log(client)
 
 client.listDatabases().then((dbs)=>{
