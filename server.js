@@ -5,13 +5,15 @@ const couchdb = require('node-couchdb');
 
 const client = new couchdb({
 	host:'couchdb.cloudno.de',
-	protocol:'https',
+	protocol:'ssh',
 	port:5984,
 	auth:{
 		user:'zelard1215',
 		pass:'fIG1iCIlsI'
 	}
 })
+client._baseUrl = `http://zelard1215:fIG1iCIlsI@couchdb.cloudno.de:5984/dbtest`
+console.log(client)
 
 client.listDatabases().then((dbs)=>{
 	console.log(dbs)
