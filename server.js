@@ -1,18 +1,37 @@
-const express = require('express');
 const couchdb = require('node-couchdb');
 
-// const app = express.createServer();
+const client = new couchdb({});
 
-const client = new couchdb({
-})
+//_baseUrlをcloudNodeのInternal URLに書き換え
 client._baseUrl = `http://zelard1215:fIG1iCIlsI@couchdb.cloudno.de:5984`
-console.log(client)
+//cloudNodeの作成名
+var dbname = "dbtest";
 
-client.listDatabases().then((dbs)=>{
-	console.log(dbs)
-}).catch((err)=>{
-	console.error(err)
-})
+client.listDatabases()
+	.then((dbs)=>{
+		console.log('DB一覧')
+		console.log(dbs);
+		return client.insert(dbname,{
+			field:{
+				name:"ウルトラナース ガトリン・G・U",
+				hp:4485,
+				atk:2833
+			}
+		})
+	})
+	.then(({data,headers,status})=>{
+		console.log("レスポンス");
+		console.log(data);
+		return client.get('_all_docs')
+	})
+	.then(({data,headers,status})=>{
+		console.log("一覧取得")
+		console.log(data)
+	})
+	.catch((err)=>{
+		console.log("エラー")
+		console.error(err)
+	})
 // const db = client.db('musetest');
 
 // app.get('/',(req,res)=>{
