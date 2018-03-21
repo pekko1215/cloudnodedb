@@ -1,7 +1,7 @@
 const express = require('express');
 const couchdb = require('node-couchdb');
 
-const app = express.createServer();
+// const app = express.createServer();
 
 const client = new couchdb({
 	host:'couchdb.cloudno.de',
