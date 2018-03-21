@@ -1,5 +1,4 @@
 const couchdb = require('node-couchdb');
-
 const client = new couchdb({
 	host:'couchdb.cloudno.de',
 	protocol:'https',
