@@ -9,7 +9,7 @@ var dbname = "dbtest";
 
 client.listDatabases()
 	.then((dbs)=>{
-		console.log('DB一覧')
+		console.log('DBList')
 		console.log(dbs);
 		return client.insert(dbname,{
 			field:{
@@ -20,16 +20,16 @@ client.listDatabases()
 		})
 	})
 	.then(({data,headers,status})=>{
-		console.log("レスポンス");
+		console.log("Insert Document");
 		console.log(data);
-		return client.get('_all_docs')
+		return client.get(dbname,'_all_docs')
 	})
 	.then(({data,headers,status})=>{
-		console.log("一覧取得")
+		console.log("Document List")
 		console.log(data)
 	})
 	.catch((err)=>{
-		console.log("エラー")
+		console.log("Error")
 		console.error(err)
 	})
 // const db = client.db('musetest');
